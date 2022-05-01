@@ -8,8 +8,14 @@ import {
 import { useField } from '@unform/core';
 
 import { Container } from './styles';
+import { IconType } from 'react-icons/lib';
 
-const Input = ({ name, icon: Icon, ...rest }) => {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{
+  name: string;
+  icon?: IconType;
+} 
+
+const Input = ({ name, icon: Icon, ...props }: InputProps) => {
   const inputRef = useRef(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -44,7 +50,7 @@ const Input = ({ name, icon: Icon, ...rest }) => {
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef}
-        {...rest}
+        {...props}
       />
     </Container>
   );
